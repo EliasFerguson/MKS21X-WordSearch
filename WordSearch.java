@@ -12,7 +12,7 @@ public class WordSearch{
         for (int i2 = 0; i2 < data[i].length; i2++) {
           data[i][i2] = '_';
         }
-      } 
+      }
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -29,6 +29,14 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
+      String output = "";
+      for (int i = 0; i < data.length; i++) {
+        for (int i2 = 0; i2 < data[i].length; i2++) {
+          output += data[i][i2];
+        }
+        output += "\n";
+      }
+      return output;
     }
 
 
