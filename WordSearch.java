@@ -32,7 +32,7 @@ public class WordSearch{
       String output = "";
       for (int i = 0; i < data.length; i++) {
         for (int i2 = 0; i2 < data[i].length; i2++) {
-          output += data[i][i2];
+          output += data[i][i2] + " ";
         }
         output += "\n";
       }
@@ -52,6 +52,18 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+      if (word.length() + col > data[row].length) {
+        return false;
+      }
+      for (int i = 0; i < word.length(); i++) {
+        if (word.charAt(i) != data[row][col + i] && data[row][col + i] != '_') {
+          return false;
+        }
+      }
+      for (int i = 0; i < word.length(); i++) {
+        data[row][col + i] = word.charAt(i);
+      }
+      return true;
     }
 
    /**Attempts to add a given word to the specified position of the WordGrid.
