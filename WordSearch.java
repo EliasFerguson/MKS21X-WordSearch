@@ -7,6 +7,9 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
     public WordSearch(int rows,int cols){
+      if (rows < 0 || cols < 0) {
+        throw new IllegalArgumentException();
+      }
       data = new char[rows][cols];
       for (int i = 0; i < data.length; i++) {
         for (int i2 = 0; i2 < data[i].length; i2++) {
@@ -52,7 +55,7 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-      if (word.length() + col > data[row].length) {
+      if ((row < 0 || col < 0) || (word.length() + col > data[row].length)) {
         return false;
       }
       for (int i = 0; i < word.length(); i++) {
@@ -78,7 +81,7 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
-      if (word.length() + row > data[col].length) {
+      if ((row < 0 || col < 0) || (word.length() + row > data[col].length))  {
         return false;
       }
       for (int i = 0; i < word.length(); i++) {
