@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class WordSearch{
+public class WordSearch {
   private int seed;
   private Random randgen;
   private ArrayList<String> wordsToAdd;
@@ -12,20 +12,19 @@ public class WordSearch{
      *@param row is the starting height of the WordSearch
      *@param col is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols){
+    public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
       if (rows < 0 || cols < 0) {
         throw new IllegalArgumentException();
       }
+      seed = randgen.nextInt();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
       data = new char[rows][cols];
-      for (int i = 0; i < data.length; i++) {
-        for (int i2 = 0; i2 < data[i].length; i2++) {
-          data[i][i2] = '_';
-        }
-      }
+      clear();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
-    private void clear(){
+    private void clear() {
       for (int i = 0; i < data.length; i++) {
         for (int i2 = 0; i2 < data[i].length; i2++) {
           data[i][i2] = '_';
@@ -127,7 +126,6 @@ public class WordSearch{
     }
     return true;
   }
-}
 /**Attempts to add a given word to the specified position of the WordGrid.
     *The word is added in the direction rowIncrement,colIncrement
     *Words must have a corresponding letter to match any letters that it overlaps.
@@ -150,3 +148,4 @@ public class WordSearch{
     *[ 1,0] would add downwards because (row+1), with no col change
     *[ 0,-1] would add towards the left because (col - 1), with no row change
     */
+  }
