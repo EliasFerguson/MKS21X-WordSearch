@@ -19,8 +19,13 @@ public class WordSearch {
       seed = randgen.nextInt();
       File f = new File(fileName);
       Scanner in = new Scanner(f);
+      while (in.hasNext()) {
+        String word = in.next();
+        wordsToAdd.add(word);
+      }
       data = new char[rows][cols];
       clear();
+      //addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
