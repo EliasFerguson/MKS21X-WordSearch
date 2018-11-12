@@ -39,6 +39,7 @@ public class WordSearch {
     }
 
    public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+     word = word.toUpperCase();
      int len = word.length();
      if (rowIncrement == 0 && colIncrement == 0) {
        return false;
@@ -82,6 +83,9 @@ public class WordSearch {
         output += "|\n";
       }
       return output;
+    }
+    public void addAllWords() {
+
     }
 
 
