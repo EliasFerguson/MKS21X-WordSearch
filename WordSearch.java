@@ -120,7 +120,7 @@ public class WordSearch {
    }
    if (word.length() + row > data.length || word.length() + col > data[0].length) {
      return false;
-    }
+   }
     for (int i = 0; i < word.length(); i++) {
       if (data[row + i][col + i] != word.charAt(i) && data[row + i][col + i] != '_') {
         return false;
@@ -154,6 +154,9 @@ public class WordSearch {
        return false;
      }
      if ((len - 1) * rowIncrement + row < 0 || (len - 1) * colIncrement + col < 0) {
+       return false;
+     }
+     if (len == 0 || word.contains(" ")) {
        return false;
      }
      for (int i = 0; i < word.length(); i++) {
