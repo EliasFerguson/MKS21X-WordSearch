@@ -144,7 +144,26 @@ public class WordSearch {
     *        false when: the word doesn't fit, OR  rowchange and colchange are both 0,
     *        OR there are overlapping letters that do not match
     */
+
    public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+     int len = word.length();
+     if (rowIncrement == 0 && colIncrement == 0) {
+       return false;
+     }
+     if (len * rowIncrement + row > data.length || len * colIncrement + col > data[0].length) {
+       return false;
+     }
+     if ((len - 1) * rowIncrement + row < 0 || (len - 1) * colIncrement + col < 0) {
+       return false;
+     }
+     for (int i = 0; i < word.length(); i++) {
+       if (data[row + i * rowIncrement][col + i * colIncrement] != word.charAt(i) && data[row + i * rowIncrement][col + i * colIncrement] != '_') {
+         return false;
+       }
+     }
+     for (int i = 0; i < word.length(); i++) {
+       data[row + i * rowIncrement][col + i * colIncrement] = word.charAt(i);
+     }
      return true;
    }
 
