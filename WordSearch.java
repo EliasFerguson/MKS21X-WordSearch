@@ -85,7 +85,8 @@ public class WordSearch {
       return output;
     }
     public void addAllWords() {
-
+      int tries = 0;
+      
     }
 
 
