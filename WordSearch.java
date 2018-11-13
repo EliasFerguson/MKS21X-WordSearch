@@ -28,6 +28,22 @@ public class WordSearch {
       clear();
       //addAllWords();
     }
+    public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
+      if (rows < 0 || cols < 0) {
+        throw new IllegalArgumentException();
+      }
+      randgen = new Random(randSeed);
+      seed = randgen.nextInt();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      while (in.hasNext()) {
+        String word = in.next();
+        wordsToAdd.add(word);
+      }
+      data = new char[rows][cols];
+      clear();
+      //addAllWords();
+    }
 
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear() {
