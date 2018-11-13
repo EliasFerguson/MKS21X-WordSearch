@@ -82,11 +82,15 @@ public class WordSearch {
         }
         output += "|\n";
       }
-      return output;
+      String words = "Words:";
+      for (int i = 0; i < wordsAdded.size() - 1; i++) {
+        words += wordsAdded.get(i) + " ";
+      }
+      return output + words;
     }
     public void addAllWords() {
       int tries = 0;
-      
+
     }
 
 
