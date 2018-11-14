@@ -16,8 +16,8 @@ public class WordSearch {
       if (rows < 0 || cols < 0) {
         throw new IllegalArgumentException();
       }
-      randgen = new Random();
-      seed = randgen.nextInt();
+      seed = new Random();
+      seed = Math.abs(seed);
       File f = new File(fileName);
       Scanner in = new Scanner(f);
       while (in.hasNext()) {
@@ -33,7 +33,6 @@ public class WordSearch {
         throw new IllegalArgumentException();
       }
       randgen = new Random(randSeed);
-      seed = randgen.nextInt();
       File f = new File(fileName);
       Scanner in = new Scanner(f);
       while (in.hasNext()) {
@@ -53,8 +52,17 @@ public class WordSearch {
         }
       }
     }
+    public ArrayList<String> readFile(String fileName) {
 
-   public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      while (in.hasNext()) {
+        String word = in.next().toUpperCase();
+
+      }
+    }
+
+    public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
      word = word.toUpperCase();
      int len = word.length();
      if (rowIncrement == 0 && colIncrement == 0) {
