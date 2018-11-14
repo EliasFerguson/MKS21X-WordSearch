@@ -13,10 +13,15 @@ public class WordSearch {
     }
     data = new char[rows][cols];
     clear();
+    randgen = new Random();
+    seed = Math.abs(randgen.nextInt() % 10000);
     wordsToAdd = readFile(fileName);
     addAllWords();
     if (!answer) {
-      //fillBox();
+      //fillBoxLetter();
+    }
+    else {
+      //fillBoxSpace();
     }
   }
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException {
@@ -29,6 +34,9 @@ public class WordSearch {
       addAllWords();
       if (!answer) {
         //fillBox();
+      }
+      else {
+        //fillBoxSpace();
       }
     }
 
