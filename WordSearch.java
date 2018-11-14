@@ -13,20 +13,17 @@ public class WordSearch {
      *@param col is the starting width of the WordSearch
      */
 
-    public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
-      if (rows < 0 || cols < 0) {
+    public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException {
+      if (rows <= 0 || cols <= 0) {
         throw new IllegalArgumentException();
-      }
-      randgen = new Random(randSeed);
-      File f = new File(fileName);
-      Scanner in = new Scanner(f);
-      while (in.hasNext()) {
-        String word = in.next();
-        wordsToAdd.add(word);
       }
       data = new char[rows][cols];
       clear();
-      //addAllWords();
+      wordsToAdd = readFile(fileName);
+      addAllWords();
+      if (!answer) {
+        //fillBox();
+      }
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -37,6 +34,7 @@ public class WordSearch {
         }
       }
     }
+
     public ArrayList<String> readFile(String fileName) throws FileNotFoundException {
       ArrayList<String> output = new ArrayList<String>();
       File f = new File(fileName);
@@ -47,7 +45,6 @@ public class WordSearch {
       }
       return output;
     }
-
 
     public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
      word = word.toUpperCase();
