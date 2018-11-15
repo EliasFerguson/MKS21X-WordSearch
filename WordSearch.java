@@ -117,6 +117,7 @@ public class WordSearch {
           int startCol = randgen.nextInt() % cols;
           if (addWord(inQuestion, startRow, startCol, rowIncrement, colIncrement)) {
             tries = 0;
+            wordsAdded.add(inQuestion);
           }
           else {
             tries -= 1;
