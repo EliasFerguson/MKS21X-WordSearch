@@ -18,10 +18,10 @@ public class WordSearch {
     wordsToAdd = readFile(fileName);
     addAllWords();
     if (!answer) {
-      //fillBoxLetter();
+      fillBoxLetter();
     }
     else {
-      //fillBoxSpace();
+      fillBoxSpace();
     }
   }
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException {
@@ -33,10 +33,10 @@ public class WordSearch {
       wordsToAdd = readFile(fileName);
       addAllWords();
       if (!answer) {
-        //fillBox();
+        fillBoxLetter();
       }
       else {
-        //fillBoxSpace();
+        fillBoxSpace();
       }
     }
 
