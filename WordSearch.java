@@ -125,4 +125,10 @@ public class WordSearch {
         }
       }
     }
+    public void fillBoxLetter() {
+
+    }
+    public void fillBoxSpace() {
+      
+    }
   }
