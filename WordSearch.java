@@ -105,12 +105,23 @@ public class WordSearch {
       return output + words;
     }
     public void addAllWords() {
-      int rowIncrement = randgen.nextInt() % 2;
-      int colIncrement = randgen.nextInt() % 2;
-      randgen.nextInt() % 2;
+      int rows = data.length;
+      int cols = data[0].length;
       for (int i = 0; i < wordsToAdd.size(); i++) {
+        int rowIncrement = randgen.nextInt() % 2;
+        int colIncrement = randgen.nextInt() % 2;
         int tries = 100;
-
+        while (tries > 0) {
+          String inQuestion = wordsToAdd.get(i);
+          int startRow = randgen.nextInt() % rows;
+          int startCol = randgen.nextInt() % cols;
+          if (addWord(inQuestion, startRow, startCol, rowIncrement, colIncrement)) {
+            tries = 0;
+          }
+          else {
+            tries -= 1;
+          }
+        }
       }
     }
   }
