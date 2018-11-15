@@ -6,7 +6,9 @@ public class WordSearch {
   private ArrayList<String> wordsToAdd;
   private ArrayList<String> wordsAdded;
   private char[][] data;
+  public void main(String[]args) {
 
+  }
   public WordSearch(int rows, int cols, String fileName, boolean answer) throws FileNotFoundException {
     if (rows <= 0 || cols <= 0) {
       throw new IllegalArgumentException();
@@ -30,6 +32,8 @@ public class WordSearch {
       }
       data = new char[rows][cols];
       clear();
+      randgen = new Random(randSeed);
+      seed = randSeed;
       wordsToAdd = readFile(fileName);
       addAllWords();
       if (!answer) {
