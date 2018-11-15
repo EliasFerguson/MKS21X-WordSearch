@@ -14,7 +14,7 @@ public class WordSearch {
     data = new char[rows][cols];
     clear();
     randgen = new Random();
-    seed = Math.abs(randgen.nextInt() % 10000);
+    seed = Math.abs(randgen.nextInt() % 10001);
     wordsToAdd = readFile(fileName);
     addAllWords();
     if (!answer) {
@@ -105,7 +105,12 @@ public class WordSearch {
       return output + words;
     }
     public void addAllWords() {
-      int tries = 0;
+      int rowIncrement = randgen.nextInt() % 2;
+      int colIncrement = randgen.nextInt() % 2;
+      randgen.nextInt() % 2;
+      for (int i = 0; i < wordsToAdd.size(); i++) {
+        int tries = 100;
 
+      }
     }
   }
