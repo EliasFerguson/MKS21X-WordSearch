@@ -146,9 +146,9 @@ public class WordSearch {
     public void fillBoxLetter() {
       String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       for (int i = 0; i < data.length; i++) {
-        for (int i2 = 0; i < data[i].length; i2++) {
+        for (int i2 = 0; i2 < data[i].length; i2++) {
           if (data[i][i2] == '_') {
-            int rndm = randgen.nextInt() % 26;
+            int rndm = Math.abs(randgen.nextInt()) % 26;
             data[i][i2] = letters.charAt(rndm);
           }
         }
