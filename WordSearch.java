@@ -108,13 +108,15 @@ public class WordSearch {
       for (int i = 0; i < data.length; i++) {
         for (int i2 = 0; i2 < data[i].length; i2++) {
           if (i2 == 0) {
-            output += "|" + data[i][i2];
+            output += "|" + data[i][i2] + " ";
+          }
+          else if (i2 == data[i].length - 1) {
+            output += data[i][i2] + "|\n";
           }
           else {
             output += data[i][i2] + " ";
           }
         }
-        output += "|\n";
       }
       String words = "Words:";
       for (int i = 0; i < wordsAdded.size() - 1; i++) {
