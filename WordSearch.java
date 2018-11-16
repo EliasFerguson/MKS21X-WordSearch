@@ -78,16 +78,16 @@ public class WordSearch {
      if (rowIncrement == 0 && colIncrement == 0) {
        return false;
      }
-     if (len * rowIncrement + row > data.length || len * colIncrement + col > data[0].length) {
+     if ((len * rowIncrement) + row > data.length || (len * colIncrement) + col > data[0].length) {
        return false;
      }
-     if (((len - 1) * rowIncrement + row < 0) || ((len - 1) * colIncrement + col < 0)) {
+     if ((len - 1) * rowIncrement + row < 0 || (len - 1) * colIncrement + col < 0) {
        return false;
      }
      if (len == 0 || word.contains(" ")) {
        return false;
      }
-     for (int i = 0; i < word.length(); i++) {
+     for (int i = 0; i < len; i++) {
        if (data[row + i * rowIncrement][col + i * colIncrement] != word.charAt(i) && data[row + i * rowIncrement][col + i * colIncrement] != '_') {
          return false;
        }
