@@ -39,6 +39,8 @@ public class WordSearch {
       if (rows <= 0 || cols <= 0) {
         throw new IllegalArgumentException();
       }
+      wordsToAdd = new ArrayList<String>();
+      wordsAdded = new ArrayList<String>();
       data = new char[rows][cols];
       clear();
       randgen = new Random(randSeed);
@@ -78,7 +80,7 @@ public class WordSearch {
      if (rowIncrement == 0 && colIncrement == 0) {
        return false;
      }
-     if ((len * rowIncrement) + row > data.length || (len * colIncrement) + col > data[0].length) {
+     if (len * rowIncrement + row > data.length || len * colIncrement + col > data[0].length) {
        return false;
      }
      if ((len - 1) * rowIncrement + row < 0 || (len - 1) * colIncrement + col < 0) {
