@@ -90,6 +90,9 @@ public class WordSearch {
        return false;
      }
      for (int i = 0; i < len; i++) {
+       if (row + i * rowIncrement < 0 || col + i * colIncrement < 0) {
+         return false;
+       }
        if (data[row + i * rowIncrement][col + i * colIncrement] != word.charAt(i) && data[row + i * rowIncrement][col + i * colIncrement] != '_') {
          return false;
        }
