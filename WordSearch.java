@@ -9,14 +9,30 @@ public class WordSearch {
   public static void main(String[] args) throws FileNotFoundException {
     WordSearch ws1;
     boolean key = false;
-    if ((args.length == 5) && args[4].compareTo("key") == 0) {
-      key = true;
-
+    int len  = args.length;
+    if (len < 3) {
+      System.out.println("Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>");
     }
     int rc = Integer.parseInt(args[0]);
     int cc = Integer.parseInt(args[1]);
-    ws1 = new WordSearch(rc, cc, args[2], true);
-    System.out.println(ws1.toString());
+    String file = args[2];
+    if (len == 3) {
+      ws1 = new WordSearch(rc, cc, file);
+    }
+  }
+  public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
+    if (rows <= 0 || cols <= 0) {
+      throw new IllegalArgumentException();
+    }
+    wordsToAdd = new ArrayList<String>();
+    wordsAdded = new ArrayList<String>();
+    data = new char[rows][cols];
+    clear();
+    randgen = new Random();
+    seed = Math.abs(randgen.nextInt() % 10001);
+    wordsToAdd = readFile(fileName);
+    addAllWords();
+    fillBoxLetter();
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) throws FileNotFoundException {
     if (rows <= 0 || cols <= 0) {
