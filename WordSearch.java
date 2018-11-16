@@ -6,8 +6,15 @@ public class WordSearch {
   private ArrayList<String> wordsToAdd;
   private ArrayList<String> wordsAdded;
   private char[][] data;
-  public void main(String[]args) {
-
+  public static void main(String[] args) throws FileNotFoundException {
+    boolean key = false;
+    if ((args.length == 5) && args[4].compareTo("key") == 0) {
+      key = true;
+    }
+    int rc = Integer.parseInt(args[0]);
+    int cc = Integer.parseInt(args[1]);
+    WordSearch ws1 = new WordSearch(rc, cc, args[2], false);
+    System.out.println(ws1.toString());
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) throws FileNotFoundException {
     if (rows <= 0 || cols <= 0) {
@@ -106,7 +113,7 @@ public class WordSearch {
       for (int i = 0; i < wordsAdded.size() - 1; i++) {
         words += wordsAdded.get(i) + " ";
       }
-      return output + words;
+      return output + words + "\nSeed: " + randgen;
     }
     public void addAllWords() {
       int rows = data.length;
