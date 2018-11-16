@@ -18,6 +18,21 @@ public class WordSearch {
     String file = args[2];
     if (len == 3) {
       ws1 = new WordSearch(rc, cc, file);
+      System.out.println(ws1.toString());
+    }
+    if (len == 4) {
+      if (args[3].compareTo("key") == 0) {
+        key = true;
+      }
+      ws1 = new WordSearch(rc, cc, file, key);
+      System.out.println(ws1.toString());
+    }
+    if (len > 4) {
+      if (args[4].compareTo("key") == 0) {
+        key = true;
+      }
+      ws1 = new WordSearch(rc, cc, file, Integer.parseInt(args[3]), key);
+      System.out.println(ws1.toString());
     }
   }
   public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
