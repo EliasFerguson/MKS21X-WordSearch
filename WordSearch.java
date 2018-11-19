@@ -83,7 +83,7 @@ public class WordSearch {
       data = new char[rows][cols];
       clear();
       Random seedCreation = new Random();
-      seed = seedCreation.nextInt() % 10001;
+      seed = Math.abs(seedCreation.nextInt() % 10001);
       randgen = new Random(seed);
       try {
         wordsToAdd = readFile(fileName);
