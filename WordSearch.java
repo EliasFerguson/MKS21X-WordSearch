@@ -8,27 +8,36 @@ public class WordSearch {
   private char[][] data;
   private String invalidDims = "Invalid Dimensions for the WordSearch, both rols and cols must be above 0.";
   private String invalidSeed = "Invaid seed, seed must be between 0 and 10000 inclusive.";
-  private String textMessage = "That text file doesn't exist!";
+  private String textMessage = "The text file called <";
+  private String textMessage2 = "> does not exist.";
+  private String formatMessage = "Format to Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>.";
   public static void main(String[] args) {
     String formatMessage = "Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>.";
-    WordSearch ws1;
+    WordSearch ws1 = null;
+    String printer = "";
     boolean key = false;
-    int len  = args.length;
+    int len = args.length;
     try {
-      if (args.length == 3) {
+      if (args.length < 3) {
+        System.out.println(formatMessage);
+        System.exit(1);
+      }
+      else if (args.length == 3) {
         int rows = Integer.parseInt(args[0]);
         int cols = Integer.parseInt(args[1]);
         String file = args[2];
         ws1 = new WordSearch(rows, cols, file, key);
+        printer = ws1.toString();
       }
-      if (args.length == 4) {
+      else if (args.length == 4) {
         int rows = Integer.parseInt(args[0]);
         int cols = Integer.parseInt(args[1]);
         String file = args[2];
         int seed = Integer.parseInt(args[3]);
         ws1 = new WordSearch(rows, cols, file, seed, key);
+        printer = ws1.toString();
       }
-      if (args.length > 4) {
+      else if (args.length > 4) {
         int rows = Integer.parseInt(args[0]);
         int cols = Integer.parseInt(args[1]);
         String file = args[2];
@@ -37,17 +46,18 @@ public class WordSearch {
           key = true;
         }
         ws1 = new WordSearch(rows, cols, file, seed, key);
+        printer = ws1.toString();
       }
     }
     catch (NumberFormatException e) {
       System.out.println(formatMessage);
       System.exit(1);
     }
-    System.out.println(ws1.toString());
+    System.out.println(printer);
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) {
     if (rows <= 0 || cols <= 0) {
-      System.out.println(invalidDims);
+      System.out.println(invalidDims + "\n" + formatMessage);
       System.exit(1);
     }
     wordsToAdd = new ArrayList<String>();
@@ -61,7 +71,8 @@ public class WordSearch {
       wordsToAdd = readFile(fileName);
     }
     catch (FileNotFoundException badFile) {
-      System.out.println(textMessage);
+      System.out.println(textMessage + fileName + textMessage2 + "\n" + formatMessage);
+      System.exit(1);
     }
     addAllWords();
     if (!answer) {
@@ -73,11 +84,11 @@ public class WordSearch {
   }
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) {
       if (rows <= 0 || cols <= 0) {
-        System.out.println(invalidDims);
+        System.out.println(invalidDims + "\n" + formatMessage);
         System.exit(1);
       }
-      if (seed < 0 || seed > 10000) {
-        System.out.println(invalidSeed);
+      if (randSeed < 0 || randSeed > 10000) {
+        System.out.println(invalidSeed + "\n" + formatMessage);
         System.exit(1);
       }
       wordsToAdd = new ArrayList<String>();
@@ -90,7 +101,8 @@ public class WordSearch {
         wordsToAdd = readFile(fileName);
       }
       catch (FileNotFoundException badFile) {
-        System.out.println(textMessage);
+        System.out.println(textMessage + fileName + textMessage2 + "\n" + formatMessage);
+        System.exit(1);
       }
       addAllWords();
       if (!answer) {
