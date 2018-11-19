@@ -48,18 +48,19 @@ public class WordSearch {
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) {
     if (rows <= 0 || cols <= 0) {
-      throw new IllegalArgumentException(invalidDims);
+      System.out.println(invalidDims);
     }
     wordsToAdd = new ArrayList<String>();
     wordsAdded = new ArrayList<String>();
     data = new char[rows][cols];
     clear();
-    randgen = new Random();
-    seed = Math.abs(randgen.nextInt() % 10001);
+    Random seedCreation = new Random();
+    seed = seedCreation.nextInt() % 10001;
+    randgen = new Random(seed);
     try {
       wordsToAdd = readFile(fileName);
     }
-    catch (FileNotFoundException e) {
+    catch (FileNotFoundException badFile) {
       System.out.println(textMessage);
     }
     addAllWords();
@@ -72,7 +73,7 @@ public class WordSearch {
   }
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) {
       if (rows <= 0 || cols <= 0) {
-        throw new IllegalArgumentException(invalidDims);
+        System.out.println(invalidDims);
       }
       if (seed < 0 || seed > 10000) {
         throw new IllegalArgumentException(invalidSeed);
@@ -87,7 +88,7 @@ public class WordSearch {
       try {
         wordsToAdd = readFile(fileName);
       }
-      catch (FileNotFoundException e) {
+      catch (FileNotFoundException badFile) {
         System.out.println(textMessage);
       }
       addAllWords();
