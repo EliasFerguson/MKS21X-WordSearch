@@ -20,7 +20,6 @@ public class WordSearch {
         int cols = Integer.parseInt(args[1]);
         String file = args[2];
         ws1 = new WordSearch(rows, cols, file, key);
-        System.out.println(ws1.toString());
       }
       if (args.length == 4) {
         int rows = Integer.parseInt(args[0]);
@@ -28,7 +27,6 @@ public class WordSearch {
         String file = args[2];
         int seed = Integer.parseInt(args[3]);
         ws1 = new WordSearch(rows, cols, file, seed, key);
-        System.out.println(ws1.toString());
       }
       if (args.length > 4) {
         int rows = Integer.parseInt(args[0]);
@@ -39,16 +37,18 @@ public class WordSearch {
           key = true;
         }
         ws1 = new WordSearch(rows, cols, file, seed, key);
-        System.out.println(ws1.toString());
       }
     }
     catch (NumberFormatException e) {
       System.out.println(formatMessage);
+      System.exit(1);
     }
+    System.out.println(ws1.toString());
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) {
     if (rows <= 0 || cols <= 0) {
       System.out.println(invalidDims);
+      System.exit(1);
     }
     wordsToAdd = new ArrayList<String>();
     wordsAdded = new ArrayList<String>();
@@ -74,9 +74,11 @@ public class WordSearch {
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) {
       if (rows <= 0 || cols <= 0) {
         System.out.println(invalidDims);
+        System.exit(1);
       }
       if (seed < 0 || seed > 10000) {
-        throw new IllegalArgumentException(invalidSeed);
+        System.out.println(invalidSeed);
+        System.exit(1);
       }
       wordsToAdd = new ArrayList<String>();
       wordsAdded = new ArrayList<String>();
@@ -163,7 +165,7 @@ public class WordSearch {
         }
       }
       String words = "Words:";
-      for (int i = 0; i < wordsAdded.size() - 1; i++) {
+      for (int i = 0; i < wordsAdded.size(); i++) {
         words += wordsAdded.get(i) + " ";
       }
       return output + words + "\nSeed: " + seed;
