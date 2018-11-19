@@ -8,10 +8,14 @@ public class WordSearch {
   private char[][] data;
   public static void main(String[] args) throws FileNotFoundException {
     WordSearch ws1;
+    String formatMessage = "Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>.";
+    String invalidDims = "Invalid Dimensions for the WordSearch, both rols and cols must be above 0.";
+    String invalidSeed = "Invaid seed, seed must be between 0 and 10000 inclusive.";
+    String textMessage = "That text file doesn't exist!";
     boolean key = false;
     int len  = args.length;
     if (len < 3) {
-      System.out.println("Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>");
+      System.out.println();
     }
     int rc = Integer.parseInt(args[0]);
     int cc = Integer.parseInt(args[1]);
