@@ -6,12 +6,12 @@ public class WordSearch {
   private ArrayList<String> wordsToAdd;
   private ArrayList<String> wordsAdded;
   private char[][] data;
+  private String formatMessage = "Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>.";
+  private String invalidDims = "Invalid Dimensions for the WordSearch, both rols and cols must be above 0.";
+  private String invalidSeed = "Invaid seed, seed must be between 0 and 10000 inclusive.";
+  private String textMessage = "That text file doesn't exist!";
   public static void main(String[] args) throws FileNotFoundException {
     WordSearch ws1;
-    String formatMessage = "Incorrect Format, Use: java WordSearch <#rows> <#cols> <filename.txt> <OPTIONAL seed#> <OPTIONAL key>.";
-    String invalidDims = "Invalid Dimensions for the WordSearch, both rols and cols must be above 0.";
-    String invalidSeed = "Invaid seed, seed must be between 0 and 10000 inclusive.";
-    String textMessage = "That text file doesn't exist!";
     boolean key = false;
     int len  = args.length;
     if (len < 3) {
@@ -49,8 +49,13 @@ public class WordSearch {
     clear();
     randgen = new Random();
     seed = Math.abs(randgen.nextInt() % 10001);
-    wordsToAdd = readFile(fileName);
-    addAllWords();
+    try {
+      wordsToAdd = readFile(fileName);
+      addAllWords();
+    }
+    catch (FileNotFoundException e) {
+      System.out.println(textMessage);
+    }
     if (!answer) {
       fillBoxLetter();
     }
@@ -68,8 +73,13 @@ public class WordSearch {
       clear();
       randgen = new Random(randSeed);
       seed = randSeed;
-      wordsToAdd = readFile(fileName);
-      addAllWords();
+      try {
+        wordsToAdd = readFile(fileName);
+        addAllWords();
+      }
+      catch (FileNotFoundException e) {
+        System.out.println(textMessage);
+      }
       if (!answer) {
         fillBoxLetter();
       }
