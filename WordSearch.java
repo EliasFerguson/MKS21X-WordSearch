@@ -21,7 +21,7 @@ public class WordSearch {
     int cc = Integer.parseInt(args[1]);
     String file = args[2];
     if (len == 3) {
-      ws1 = new WordSearch(rc, cc, file);
+      ws1 = new WordSearch(rc, cc, file, false);
       System.out.println(ws1.toString());
     }
     if (len == 4) {
@@ -38,20 +38,6 @@ public class WordSearch {
       ws1 = new WordSearch(rc, cc, file, Integer.parseInt(args[3]), key);
       System.out.println(ws1.toString());
     }
-  }
-  public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
-    if (rows <= 0 || cols <= 0) {
-      throw new IllegalArgumentException();
-    }
-    wordsToAdd = new ArrayList<String>();
-    wordsAdded = new ArrayList<String>();
-    data = new char[rows][cols];
-    clear();
-    randgen = new Random();
-    seed = Math.abs(randgen.nextInt() % 10001);
-    wordsToAdd = readFile(fileName);
-    addAllWords();
-    fillBoxLetter();
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) throws FileNotFoundException {
     if (rows <= 0 || cols <= 0) {
