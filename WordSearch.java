@@ -6,7 +6,7 @@ public class WordSearch {
   private ArrayList<String> wordsToAdd;
   private ArrayList<String> wordsAdded;
   private char[][] data;
-  private String invalidDims = "Invalid Dimensions for the WordSearch, both rols and cols must be above 0.";
+  private String invalidDims = "Invalid Dimensions for the WordSearch, both rows and cols must be above 0.";
   private String invalidSeed = "Invaid seed, seed must be between 0 and 10000 inclusive.";
   private String textMessage = "The text file called <";
   private String textMessage2 = "> does not exist.";
