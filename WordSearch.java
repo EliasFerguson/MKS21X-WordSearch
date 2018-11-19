@@ -48,7 +48,7 @@ public class WordSearch {
   }
   public WordSearch(int rows, int cols, String fileName, boolean answer) {
     if (rows <= 0 || cols <= 0) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(invalidDims);
     }
     wordsToAdd = new ArrayList<String>();
     wordsAdded = new ArrayList<String>();
@@ -72,14 +72,18 @@ public class WordSearch {
   }
     public WordSearch(int rows, int cols, String fileName, int randSeed, boolean answer) {
       if (rows <= 0 || cols <= 0) {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(invalidDims);
+      }
+      if (seed < 0 || seed > 10000) {
+        throw new IllegalArgumentException(invalidSeed);
       }
       wordsToAdd = new ArrayList<String>();
       wordsAdded = new ArrayList<String>();
       data = new char[rows][cols];
       clear();
-      randgen = new Random(randSeed);
-      seed = randSeed;
+      Random seedCreation = new Random();
+      seed = seedCreation.nextInt() % 10001;
+      randgen = new Random(seed);
       try {
         wordsToAdd = readFile(fileName);
       }
